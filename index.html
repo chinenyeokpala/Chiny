@@ -99,6 +99,7 @@
         <div class="container mx-auto">
             <!-- Profile Picture Container -->
             <div class="mb-6 relative group inline-block">
+                <!-- Fallback to a placeholder if no image is loaded from local storage -->
                 <img id="profilePhoto" src="https://placehold.co/150x150/8B5CF6/FDE047?text=Your+Photo" alt="Your Profile Photo" class="rounded-full w-36 h-36 mx-auto object-cover border-4 border-purple-700 shadow-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
                 <!-- Overlay for upload icon -->
                 <label for="photoUpload" class="absolute inset-0 rounded-full flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
@@ -308,12 +309,22 @@
         // Image Upload Logic
         const profilePhoto = document.getElementById('profilePhoto');
         const photoUpload = document.getElementById('photoUpload');
+        const localStorageKey = 'portfolioProfilePhoto';
 
-        // Function to load image from Local Storage on page load
+        // Function to load image from Local Storage
         function loadProfilePhoto() {
-            const savedPhoto = localStorage.getItem('profilePhoto');
-            if (savedPhoto) {
-                profilePhoto.src = savedPhoto;
+            try {
+                const savedPhoto = localStorage.getItem(localStorageKey);
+                if (savedPhoto) {
+                    profilePhoto.src = savedPhoto;
+                } else {
+                    // Fallback to placeholder if no image is in local storage
+                    profilePhoto.src = "https://placehold.co/150x150/8B5CF6/FDE047?text=Your+Photo";
+                }
+            } catch (e) {
+                console.error("Error loading image from local storage:", e);
+                // Ensure placeholder is shown if there's a storage error
+                profilePhoto.src = "https://placehold.co/150x150/8B5CF6/FDE047?text=Your+Photo";
             }
         }
 
@@ -322,15 +333,28 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
+
                 reader.onload = function(e) {
-                    profilePhoto.src = e.target.result; // Display the new image
-                    localStorage.setItem('profilePhoto', e.target.result); // Save to local storage
+                    try {
+                        const imageDataUrl = e.target.result;
+                        profilePhoto.src = imageDataUrl;
+                        localStorage.setItem(localStorageKey, imageDataUrl);
+                    } catch (e) {
+                        console.error("Error saving image to local storage:", e);
+                        // Optional: Show a user-friendly message about storage limit
+                    }
                 };
-                reader.readAsDataURL(file); // Read the file as a Data URL
+
+                reader.onerror = function(e) {
+                    console.error("File reader error:", e);
+                    // Optionally revert to a default or show an error message on image read failure
+                };
+
+                reader.readAsDataURL(file);
             }
         });
 
-        // Call load function when the DOM is fully loaded
+        // Load the profile photo when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', loadProfilePhoto);
     </script>
 </body>
