@@ -97,9 +97,16 @@
     <!-- Hero Section -->
     <section class="bg-white py-16 px-6 md:px-12 text-center shadow-md rounded-lg mx-auto mt-8 max-w-4xl animate-scale-in">
         <div class="container mx-auto">
-            <!-- Profile Picture Placeholder -->
-            <div class="mb-6">
-                <img src="https://placehold.co/150x150/8B5CF6/FDE047?text=Your+Photo" alt="Your Profile Photo" class="rounded-full w-36 h-36 mx-auto object-cover border-4 border-purple-700 shadow-lg transform transition-transform duration-300 hover:scale-110">
+            <!-- Profile Picture Container -->
+            <div class="mb-6 relative group inline-block">
+                <img id="profilePhoto" src="https://placehold.co/150x150/8B5CF6/FDE047?text=Your+Photo" alt="Your Profile Photo" class="rounded-full w-36 h-36 mx-auto object-cover border-4 border-purple-700 shadow-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
+                <!-- Overlay for upload icon -->
+                <label for="photoUpload" class="absolute inset-0 rounded-full flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                    </svg>
+                    <input type="file" id="photoUpload" accept="image/*" class="hidden">
+                </label>
             </div>
             <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4 animate-fade-in">Salesforce Business Analyst</h1>
             <p class="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in-delay">Bridging business needs with Salesforce solutions for optimal efficiency and growth.</p>
@@ -297,6 +304,34 @@
             origin: 'bottom',
             easing: 'ease-out'
         });
+
+        // Image Upload Logic
+        const profilePhoto = document.getElementById('profilePhoto');
+        const photoUpload = document.getElementById('photoUpload');
+
+        // Function to load image from Local Storage on page load
+        function loadProfilePhoto() {
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                profilePhoto.src = savedPhoto;
+            }
+        }
+
+        // Event listener for file input change
+        photoUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePhoto.src = e.target.result; // Display the new image
+                    localStorage.setItem('profilePhoto', e.target.result); // Save to local storage
+                };
+                reader.readAsDataURL(file); // Read the file as a Data URL
+            }
+        });
+
+        // Call load function when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', loadProfilePhoto);
     </script>
 </body>
 </html>
