@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salesforce Business Analyst Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f4f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #0d47a1, #1976d2);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1581091215367-59c81dc80b3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-blend-mode: multiply;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header h1 {
+      font-size: 2.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.25rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #0d47a1;
+      border-bottom: 2px solid #1976d2;
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 32px;
+      height: 32px;
+      background-image: url('https://img.icons8.com/color/48/000000/sales-performance.png');
+      background-size: cover;
+    }
+
+    .bio, .skills, .projects, .contact {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .skills ul {
+      list-style-type: square;
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #0d47a1;
+    }
+
+    .project-description {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #0d47a1;
+      color: #fff;
+      margin-top: 3rem;
+    }
+
+    a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chinenye Okpala</h1>
+    <p>Salesforce Business Analyst | Automation | Optimization | Agile</p>
+  </header>
+  <div class="container">
+    <section class="bio">
+      <h2 class="section-title">About Me</h2>
+      <p>I am a Salesforce Business Analyst with a robust skillset across automation, data modeling, process optimization, and Agile delivery. I bring a strategic and detail-oriented approach to solving complex business problems, enhancing productivity, and facilitating seamless communication among stakeholders.</p>
+    </section>
+    <section class="skills">
+      <h2 class="section-title">Core Skills</h2>
+      <ul>
+        <li>Automation & Process Optimization (Flows, Workflow Rules)</li>
+        <li>Salesforce Platform Knowledge (Sales, Service, Experience Cloud)</li>
+        <li>User Story & Requirements Elicitation</li>
+        <li>Process Mapping & Optimization (BPMN, Lucidchart, Flowcharts)</li>
+        <li>Stakeholder Communication & Facilitation</li>
+        <li>Salesforce Data Modeling & Architecture</li>
+        <li>Agile/Scrum Delivery (Jira, ceremonies, backlog grooming)</li>
+        <li>Reporting & Dashboards (Executive insights, real-time metrics)</li>
+        <li>Testing & Quality Assurance (UAT, Test Scripts, Regression)</li>
+        <li>Deployment & Change Management</li>
+      </ul>
+    </section>
+    <section class="projects">
+      <h2 class="section-title">Portfolio Projects</h2>
+      <div class="project-card">
+        <h3 class="project-title">Cross-Cloud Salesforce Implementation</h3>
+        <p class="project-description">Led a cross-functional team to implement Salesforce Sales & Service Cloud across three departments, increasing automation by 45% and reducing manual input errors by 60%.</p>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">Automated Approval Workflow with Flow</h3>
+        <p class="project-description">Designed and deployed multi-step approval flows for quote-to-cash processes, enhancing visibility and reducing cycle time from 5 days to 2 days.</p>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">Agile Backlog Management in Jira</h3>
+        <p class="project-description">Managed grooming, prioritization, and sprint planning across a backlog of 100+ user stories for a major CRM overhaul.</p>
+      </div>
+      <div class="project-card">
+        <h3 class="project-title">Executive Dashboard Development</h3>
+        <p class="project-description">Created data-driven dashboards in Salesforce for C-level leaders to monitor KPIs, sales trends, and support metrics in real-time.</p>
+      </div>
+    </section>
+    <section class="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-info">
+        <p><strong>Email:</strong> chinenyeokpala30@gmail.com</p>
+        <p><strong>Location:</strong> Calgary, AB, Canada</p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chinenyeokpala" target="_blank">linkedin.com/in/chinenyeokpala</a></p>
+        <p><strong>Download Resume:</strong> <a href="resume.pdf" download>Click here to download</a></p>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>&copy; 2025 Chinenye Okpala | Calgary, AB | Salesforce Business Analyst</p>
+  </footer>
+</body>
+</html>
